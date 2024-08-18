@@ -1,0 +1,25 @@
+﻿@model Book
+
+<div class="card border-primary rounded-4 mt-5 shadow-sm overflow-hidden">
+    <div class="card-body p-0">
+        <div class="row g-0">
+            <div class="col-md-8 p-5 d-flex flex-column justify-content-between bg-light border-end border-primary">
+                <div>
+                    <h1 class="text-primary fw-bold">@Model.Title</h1>
+                    @if (Model.Author != null)
+                    {
+                        <span class="badge bg-info fs-5 mb-4">@Model.Author.Name</span>
+                    }
+                    <p class="fs-5 text-dark">@Model.Price.ToString("C")</p> <!-- Assuming Price is a decimal, format as currency -->
+                    <p class="me-2 fs-1 text-body-tertiary">@Model.Genre</p>
+                    <p class="me-2 fs-1 text-body-tertiary">@Model.publicationDate.ToString("d")</p> <!-- Assuming PublicationDate is a DateTime -->
+                </div>
+            </div>
+            <div class="col-md-4">
+                <img src="@Model.imgUrl" alt="Book cover for @Model.Title" class="img-fluid h-100 w-100 rounded-end" style="object-fit: cover;" />
+            </div>
+        </div>
+    </div>
+</div>
+
+<a asp-action="Index" class="btn btn-primary mt-2">Go to List!</a>

@@ -1,0 +1,35 @@
+﻿@model Author
+
+<div class="card border-primary rounded-4 mt-5 shadow-sm overflow-hidden">
+    <div class="card-body p-0">
+        <div class="row g-0">
+            <div class="col-md-8 p-5 d-flex flex-column justify-content-between bg-light border-end border-primary">
+                <div>
+                    <h1 class="text-primary fw-bold">@Model.Name</h1>
+                    <p class="me-2 fs-1 text-body-tertiary">@Model.Bio</p>
+                    <p class="me-2 fs-1 text-body-tertiary">@Model.dateOfBirth.ToString("d")</p>
+                </div>
+            </div>
+            <div class="col-md-4 p-3 d-flex flex-column align-items-center bg-white">
+                @if (Model?.books != null)
+                {
+                    @foreach (var book in Model.books)
+                    {
+                        <div class="card book-item mb-3 w-100" style="transition: transform 0.3s;">
+                            <img src="@book.imgUrl" alt="Book cover for @book.Title" class="card-img-top" style="height: 200px; object-fit: cover;" />
+                            <div class="card-body text-center">
+                                <h5 class="card-title">Title: @book.Title</h5>
+                                <p class="card-text text-muted mb-1">Price: @book.Price</p>
+                                <p class="card-text text-muted">Publication Date: @book.publicationDate.ToString("d")</p>
+                            </div>
+                        </div>
+                    }
+                }
+                else
+                {
+                    <div class="text-center mt-3">No books found</div>
+                }
+            </div>
+        </div>
+    </div>
+</div>

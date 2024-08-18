@@ -1,0 +1,65 @@
+﻿@model IEnumerable<Book>
+
+<div class="d-flex justify-content-between align-items-center mt-4 mb-4">
+    <h3 class="text-primary">Books List</h3>
+    <a class="btn btn-success btn-lg" asp-action="Add">Add Book</a>
+</div>
+<form class="d-flex justify-content-center align-items-center mb-4" asp-controller="Books" asp-action="Index">
+    <input class="form-control form-control-lg me-3" type="search" name="Search" placeholder="Search for a Book" value="@ViewContext.HttpContext.Request.Query["name"]" />
+    <select class="form-select form-select-lg me-3" name="Radio">
+        <option value="">Select a sort type</option>
+        <option value="Price">Price</option>
+        <option value="publicationDate">Publication Date</option>
+        <option value="Title">Title</option>
+    </select>
+    <button class="btn btn-primary btn-lg" type="submit">Search</button>
+</form>
+
+@{
+    if(!Model.Any())
+    {
+        <div class="alert alert-dismissible alert-warning mt-5">
+            <h4 class="alert-heading">Warning!</h4>
+            <p class="mb-0">No Books found.</p>
+        </div>
+    }
+    else
+    {
+        <div class="container mt-5">
+            <div class="table-responsive">
+                <table class="table table-hover align-middle">
+                    <thead class="table-dark">
+                        <tr>
+                            <th scope="col">ID</th>
+                            <th scope="col">Title</th>
+                            <th scope="col">Author</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Publication Date</th>
+                            <th scope="col">Actions</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        @foreach (var book in Model)
+                        {
+                            <tr id="searchResults">
+                                <td>@book.Id</td>
+                                <td>@book.Title</td>
+                                <td>@book.Author?.Name</td>
+                                <td>@book.Price</td>
+                                <td>@book.publicationDate</td>
+                                <td class="text-end">
+                                    <div class="btn-group" role="group" aria-label="Basic mixed styles example">
+                                        <a class="btn btn-primary animate-btn" asp-action="Update" asp-route-id="@book.Id">Edit</a>
+                                        <a class="btn btn-info animate-btn" asp-action="Details" asp-route-id="@book.Id">Details</a>
+                                        <a class="btn btn-danger animate-btn" asp-action="Delete" asp-route-id="@book.Id">Delete</a>
+                                    </div>
+                                </td>
+                            </tr>
+                        }
+                    </tbody>
+                </table>
+            </div>
+        </div>
+
+    }
+}

@@ -1,0 +1,60 @@
+﻿@model Book_Store.ViewModels.AddBookFormViewModel
+
+@{
+    ViewData["Title"] = "Add";
+}
+<h4>AddBookFormViewModel</h4>
+<hr />
+<div class="row">
+    <div class="col-md-4">
+        <form asp-action="Add" class="needs-validation" enctype="multipart/form-data">
+            <div asp-validation-summary="ModelOnly" class="text-danger"></div>
+            <div class="form-group">
+                <label asp-for="Title" class="control-label mt-2"></label>
+                <input asp-for="Title" class="form-control colorful-input" />
+                <span asp-validation-for="Title" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Genre" class="control-label mt-2"></label>
+                <input asp-for="Genre" class="form-control colorful-input" />
+                <span asp-validation-for="Genre" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Price" class="control-label mt-2"></label>
+                <input type="number" asp-for="Price" class="form-control mt-0 colorful-input" />
+                <span asp-validation-for="Price" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="imgUrl" class="control-label mt-2"></label>
+                <input type="text" asp-for="imgUrl" class="form-control colorful-input" />
+                <span asp-validation-for="imgUrl" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="publicationDate" class="control-label mt-2"></label>
+                <input type="date" asp-for="publicationDate" class="form-control colorful-input" required />
+                <span asp-validation-for="publicationDate" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <label asp-for="Authors" class="control-label mt-2"></label>
+                <select class="form-select colorful-select" asp-for="AuthorId" asp-items="Model.Authors"
+                        data-placeholder="Select an author" required>
+                    <option value="">Select an author</option>
+                </select>
+                <span asp-validation-for="AuthorId" class="text-danger"></span>
+            </div>
+            <div class="form-group">
+                <input type="submit" value="Create" class="btn btn-primary animated-button mt-3" />
+            </div>
+        </form>
+    </div>
+</div>
+
+<div>
+    <a asp-action="Index">Back to List</a>
+</div>
+
+@section Scripts {
+    @{
+        await Html.RenderPartialAsync("_ValidationScriptsPartial");
+    }
+}

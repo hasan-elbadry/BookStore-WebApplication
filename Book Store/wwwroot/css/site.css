@@ -1,0 +1,105 @@
+* {
+    font-family: "Chakra Petch", sans-serif;
+}
+
+html {
+  font-size: 14px;
+}
+
+@media (min-width: 768px) {
+  html {
+    font-size: 16px;
+  }
+}
+
+.btn:focus, .btn:active:focus, .btn-link.nav-link:focus, .form-control:focus, .form-check-input:focus {
+  box-shadow: 0 0 0 0.1rem white, 0 0 0 0.25rem #258cfb;
+}
+
+html {
+  position: relative;
+  min-height: 100%;
+}
+
+body {
+  margin-bottom: 60px;
+}
+
+
+
+/* Button group animation */
+.animate-btn-group {
+    display: inline-block;
+    animation: upDown 2s infinite alternate ease-in-out;
+}
+
+@keyframes upDown {
+    0% {
+        transform: translateY(0);
+    }
+
+    100% {
+        transform: translateY(-10px);
+    }
+}
+
+/* Button animations */
+.animate-btn {
+    position: relative;
+    overflow: hidden;
+    transition: all 0.3s ease;
+}
+
+    .animate-btn::after {
+        content: "";
+        position: absolute;
+        top: 50%;
+        left: 50%;
+        width: 300%;
+        height: 300%;
+        background: rgba(255, 255, 255, 0.3);
+        transform: translate(-50%, -50%) scale(0);
+        transition: all 0.5s ease;
+        border-radius: 50%;
+    }
+
+    .animate-btn:hover::after {
+        transform: translate(-50%, -50%) scale(1);
+        opacity: 0;
+    }
+
+/* Responsive table actions alignment */
+.table tbody td.text-end {
+    display: flex;
+    justify-content: flex-end;
+    align-items: center;
+}
+
+
+
+.card {
+    transition: transform 0.3s, box-shadow 0.3s;
+}
+
+    .card:hover {
+        transform: translateY(-10px);
+        box-shadow: 0 10px 20px rgba(0, 0, 0, 0.15);
+    }
+
+@media (max-width: 767px) {
+    .col-md-8, .col-md-4 {
+        flex: 0 0 100%;
+        max-width: 100%;
+    }
+
+    .p-5 {
+        padding: 2rem !important;
+    }
+}
+
+@media (max-width: 991px) {
+    .col-md-8 {
+        border-bottom: 1px solid var(--bs-primary);
+        border-end: none;
+    }
+}
